@@ -21,6 +21,7 @@ export class AppComponent {
   }
 
   onSendMessage() {
+    alert('Save button clicked! Message sent!');
     console.log('Message sent!');
     // Add your form submission logic here
   }
