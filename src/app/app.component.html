@@ -96,6 +96,9 @@
     width: 1px;
     background: var(--red-to-pink-to-purple-vertical-gradient);
     margin-inline: 0.5rem;
+    border: none;
+    height: auto;
+    flex-shrink: 0;
   }
 
   .pill-group {
@@ -162,6 +165,76 @@
     fill: var(--gray-900);
   }
 
+  .contact-form {
+    max-width: 400px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .contact-form h2 {
+    font-size: 1.75rem;
+    color: var(--gray-900);
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+  }
+
+  .contact-form p {
+    margin: 0 0 1.5rem 0;
+    color: var(--gray-700);
+    font-size: 0.875rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .form-actions wa-button {
+    flex: 1;
+  }
+
+  wa-input,
+  wa-select,
+  wa-textarea {
+    --wa-input-border-radius: 0.5rem;
+    --wa-input-border-color: color-mix(in srgb, var(--gray-400) 30%, transparent);
+    --wa-input-focus-ring-color: var(--bright-blue);
+  }
+
+  @media screen and (max-width: 650px) {
+    .contact-form {
+      max-width: none;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .form-actions {
+      flex-direction: column;
+    }
+
+    .form-actions wa-button {
+      flex: none;
+    }
+  }
+
   @media screen and (max-width: 650px) {
     .content {
       flex-direction: column;
@@ -226,26 +299,60 @@
         </defs>
       </svg>
       <h1>Hello, {{ title }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
-      <div>
-        <wa-button variant="primary" size="medium">Save Document</wa-button>
-        <wa-button variant="success" size="medium">
-          <wa-icon name="check"></wa-icon>
-          Saved!
-        </wa-button>
+
+      <div class="contact-form">
+        <h2>Get in Touch</h2>
+        <p>Send us a message and we'll get back to you soon!</p>
+
+        <form class="form">
+          <div class="form-group">
+            <wa-input
+              label="Full Name"
+              placeholder="Enter your full name"
+              required>
+            </wa-input>
+          </div>
+
+          <div class="form-group">
+            <wa-input
+              type="email"
+              label="Email Address"
+              placeholder="Enter your email"
+              required>
+            </wa-input>
+          </div>
+
+          <div class="form-group">
+            <wa-select label="Subject" placeholder="Choose a subject">
+              <wa-option value="general">General Inquiry</wa-option>
+              <wa-option value="support">Technical Support</wa-option>
+              <wa-option value="feedback">Feedback</wa-option>
+              <wa-option value="partnership">Partnership</wa-option>
+            </wa-select>
+          </div>
+
+          <div class="form-group">
+            <wa-textarea
+              label="Message"
+              placeholder="Tell us how we can help you..."
+              rows="4"
+              required>
+            </wa-textarea>
+          </div>
+
+          <div class="form-actions">
+            <wa-button variant="primary" size="medium" type="submit">
+              <wa-icon name="paper-plane"></wa-icon>
+              Send Message
+            </wa-button>
+            <wa-button variant="neutral" size="medium" type="reset">
+              Clear Form
+            </wa-button>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
   </div>
 </main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 <router-outlet />
