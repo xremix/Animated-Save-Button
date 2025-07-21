@@ -12,4 +12,5 @@ import "@awesome.me/webawesome/dist/components/icon/icon.js"
 })
 export class AnimatedButtonComponent {
   @Input() text: string = 'Save';
+  @Input() icon: string = '';
 }
