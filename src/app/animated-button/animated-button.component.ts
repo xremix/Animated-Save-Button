@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import "@awesome.me/webawesome/dist/components/button/button.js"
 import "@awesome.me/webawesome/dist/components/icon/icon.js"
 
 @Component({

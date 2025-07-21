@@ -1,0 +1,43 @@
+.custom-animated-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  
+  background-color: #007acc;
+  color: white;
+  
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  
+  transition: all 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: #005fa3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 122, 204, 0.3);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 122, 204, 0.2);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.3);
+  }
+  
+  .button-icon {
+    font-size: 16px;
+  }
+  
+  .button-text {
+    white-space: nowrap;
+  }
+}
