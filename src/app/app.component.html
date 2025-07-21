@@ -351,6 +351,7 @@
             <wa-input
               label="Full Name"
               placeholder="Enter your full name"
+              value="Peter"
               required>
             </wa-input>
           </div>
@@ -360,12 +361,13 @@
               type="email"
               label="Email Address"
               placeholder="Enter your email"
+              value="Peter.test@example.com"
               required>
             </wa-input>
           </div>
 
           <div class="form-group">
-            <wa-select label="Subject" placeholder="Choose a subject">
+            <wa-select label="Subject" placeholder="Choose a subject" value="general">
               <wa-option value="general">General Inquiry</wa-option>
               <wa-option value="support">Technical Support</wa-option>
               <wa-option value="feedback">Feedback</wa-option>
@@ -378,13 +380,14 @@
               label="Message"
               placeholder="Tell us how we can help you..."
               rows="4"
+              value="I want to save stuff"
               required>
             </wa-textarea>
           </div>
 
           <div class="form-actions">
             <app-animated-button
-              [icon]="'gear'"
+              [icon]="'save'"
               text="Save"
               (buttonClick)="onSendMessage()">
             </app-animated-button>
