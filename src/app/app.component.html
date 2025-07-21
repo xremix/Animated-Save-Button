@@ -346,7 +346,7 @@
         <h2>Get in Touch</h2>
         <p>Send us a message and we'll get back to you soon!</p>
 
-        <form class="form">
+        <div class="form">
           <div class="form-group">
             <wa-input
               label="Full Name"
@@ -388,14 +388,14 @@
           <div class="form-actions">
             <app-animated-button
               [icon]="'save'"
-              text="Save"
+              [text]="saveButtonText"
               (buttonClick)="onSendMessage()">
             </app-animated-button>
             <wa-button variant="neutral" size="medium" type="reset">
               Clear Form
             </wa-button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<wa-button type="brand" class="animated-button" (click)="onClick()">
+<wa-button type="brand" class="animated-button" nativeType="button" (click)="onClick()" (keydown)="$event.key === 'Enter' && onClick()">
   <wa-icon slot="start" *ngIf="icon" [name]="icon"></wa-icon>
   {{text}}
 </wa-button>

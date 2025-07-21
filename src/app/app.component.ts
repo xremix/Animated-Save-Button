@@ -15,14 +15,12 @@ import "@awesome.me/webawesome/dist/components/textarea/textarea.js";
 })
 export class AppComponent {
   title = 'animated-save-button';
+  public saveButtonText = 'Save';
 
-  onButtonClick(buttonType: string) {
-    console.log(`${buttonType} button clicked!`);
-  }
 
   onSendMessage() {
-    alert('Save button clicked! Message sent!');
     console.log('Message sent!');
+    this.saveButtonText = 'Saving...';
     // Add your form submission logic here
   }
 }
