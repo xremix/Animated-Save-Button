@@ -1,8 +1,6 @@
-import { LitElement, html, css } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { LitElement, html, css } from 'https://cdn.jsdelivr.net/npm/lit@3.3.1/+esm';
 
-@customElement('animated-save-button')
-export class AnimatedSaveButton extends LitElement {
+class AnimatedSaveButton extends LitElement {
   static styles = css`
     button {
       padding: 8px 16px;
@@ -22,8 +20,4 @@ export class AnimatedSaveButton extends LitElement {
   }
 }
 
-declare global {
-  interface HTMLElementTagNameMap {
-    'animated-save-button': AnimatedSaveButton;
-  }
-} 
+customElements.define('animated-save-button', AnimatedSaveButton); 
