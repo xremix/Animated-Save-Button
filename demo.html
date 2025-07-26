@@ -37,7 +37,7 @@
         
         <div class="button-demo">
             <h3>Plain Button Component:</h3>
-            <animated-save-button></animated-save-button>
+            <animated-save-button id="first-button"></animated-save-button>
         </div>
         
         <div class="button-demo">
@@ -49,5 +49,10 @@
     </div>
 
     <script type="module" src="./animated-save-button.js"></script>
+    <script>
+        document.querySelector('#first-button').addEventListener('save-clicked', function() {
+            alert('Save button clicked!');
+        });
+    </script>
 </body>
 </html> 
