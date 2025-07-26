@@ -35,6 +35,12 @@ class AnimatedSaveButton extends LitElement {
       min-width: 60px;
       min-height: 36px;
       width: 100%;
+      transition: transform 0.1s ease;
+      transform: scale(1);
+    }
+
+    button:active {
+      transform: scale(0.99);
     }
 
     .fill-overlay {
