@@ -10,8 +10,7 @@ class AnimatedSaveButton extends LitElement {
   constructor() {
     super();
     this.text = '';
-    this.showIcon = true;
-    this.icon = 'save-outline';
+    this.icon = '';
   }
 
   static styles = css`
@@ -67,7 +66,7 @@ class AnimatedSaveButton extends LitElement {
     return html`
       <button @click=${this.handleClick}>
         <div class="button-content">
-          ${this.showIcon ? html`<ion-icon class="icon" name="${this.icon}"></ion-icon>` : ''}
+          ${this.icon ? html`<ion-icon class="icon" name="${this.icon}"></ion-icon>` : ''}
           <span>${this.text}</span>
         </div>
       </button>

@@ -54,7 +54,7 @@
         
         <div class="button-demo">
             <h3>Button without Icon:</h3>
-            <animated-save-button id="no-icon-button" style="width: 200px" text="Save" showIcon="false"></animated-save-button>
+            <animated-save-button id="no-icon-button" style="width: 200px" text="Save"></animated-save-button>
         </div>
         
         <div class="button-demo">
@@ -67,46 +67,40 @@
 
     <script type="module" src="./animated-save-button.js"></script>
     <script>
+        // Returns a promise that resolves after a random delay (100-3100ms)
+        function randomLoading() {
+            const delay = Math.floor(Math.random() * 3000) + 100;
+            return new Promise(resolve => setTimeout(resolve, delay));
+        }
+
         var isSaving = false;
 
         var firstButton = document.querySelector('#first-button');
-        firstButton.addEventListener('save-clicked', function() {
-            console.log('save-clicked');
+        firstButton.addEventListener('save-clicked', async function() {
             firstButton.changeState('Saving...', 'leftToRight', 'rgb(0, 150, 255)');
-            const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
-            setTimeout(() => {
-                firstButton.changeState('Saved', 'fade', 'rgb(0, 112, 225)');
-            }, randomLoadingTime);
+            await randomLoading();
+            firstButton.changeState('Saved', 'fade', 'rgb(0, 112, 225)');
         });
 
         var noIconButton = document.querySelector('#no-icon-button');
-        noIconButton.addEventListener('save-clicked', function() {
-            console.log('no-icon save-clicked');
+        noIconButton.addEventListener('save-clicked', async function() {
             noIconButton.changeState('Saving...', 'leftToRight', 'rgb(0, 150, 255)');
-            const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
-            setTimeout(() => {
-                noIconButton.changeState('Saved', 'fade', 'rgb(0, 112, 225)');
-            }, randomLoadingTime);
+            await randomLoading();
+            noIconButton.changeState('Saved', 'fade', 'rgb(0, 112, 225)');
         });
 
         var downloadButton = document.querySelector('#download-button');
-        downloadButton.addEventListener('save-clicked', function() {
-            console.log('download clicked');
+        downloadButton.addEventListener('save-clicked', async function() {
             downloadButton.changeState('Downloading...', 'leftToRight', 'rgb(0, 150, 255)');
-            const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
-            setTimeout(() => {
-                downloadButton.changeState('Downloaded', 'fade', 'rgb(0, 112, 225)');
-            }, randomLoadingTime);
+            await randomLoading();
+            downloadButton.changeState('Downloaded', 'fade', 'rgb(0, 112, 225)');
         });
 
         var heartButton = document.querySelector('#heart-button');
-        heartButton.addEventListener('save-clicked', function() {
-            console.log('heart clicked');
+        heartButton.addEventListener('save-clicked', async function() {
             heartButton.changeState('Liking...', 'leftToRight', 'rgb(255, 0, 100)');
-            const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
-            setTimeout(() => {
-                heartButton.changeState('Liked', 'fade', 'rgb(255, 0, 100)');
-            }, randomLoadingTime);
+            await randomLoading();
+            heartButton.changeState('Liked', 'fade', 'rgb(255, 0, 100)');
         });
     </script>
 </body>
