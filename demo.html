@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Save Button Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .demo-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .button-demo {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>Animated Save Button Demo</h1>
+        
+        <div class="button-demo">
+            <h3>Plain Button Component:</h3>
+            <animated-save-button></animated-save-button>
+        </div>
+        
+        <div class="button-demo">
+            <h3>Multiple Buttons:</h3>
+            <animated-save-button></animated-save-button>
+            <animated-save-button></animated-save-button>
+            <animated-save-button></animated-save-button>
+        </div>
+    </div>
+
+    <script type="module" src="./dist/animated-save-button.js"></script>
+</body>
+</html> 
