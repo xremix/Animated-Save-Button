@@ -1,6 +1,15 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/npm/lit@3.3.1/+esm';
 
 class AnimatedSaveButton extends LitElement {
+  static properties = {
+    text: { type: String }
+  };
+
+  constructor() {
+    super();
+    this.text = '';
+  }
+
   static styles = css`
     :host {
       display: inline-block;
@@ -44,7 +53,7 @@ class AnimatedSaveButton extends LitElement {
     return html`
       <button @click=${this.handleClick}>
         <span class="button-text">
-          Save
+          ${this.text}
         </span>
       </button>
     `;
@@ -54,11 +63,18 @@ class AnimatedSaveButton extends LitElement {
     this.dispatchEvent(new CustomEvent('save-clicked'));
   }
 
-
+  changeState(text, animation, color, duration = 500){
+    if(text){
+      this.text = text;
+    }
+    if(animation === 'leftToRight'){
+      this.fillBackgroundFromLeftToRight(color, duration);
+    } else if(animation === 'fade'){
+      this.fadeBackground(color, duration);
+    }
+  }
 
   fillBackgroundFromLeftToRight(color = 'rgb(0, 150, 255)', duration = 500) {
-    console.log('fillBackgroundFromLeftToRight');
-
     const button = this.shadowRoot.querySelector('button');
     
     // Create fill-overlay div

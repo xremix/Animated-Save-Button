@@ -37,14 +37,14 @@
         
         <div class="button-demo">
             <h3>Plain Button Component:</h3>
-            <animated-save-button id="first-button" style="width: 200px"></animated-save-button>
+            <animated-save-button id="first-button" style="width: 200px" text="Save"></animated-save-button>
         </div>
         
         <div class="button-demo">
             <h3>Multiple Buttons:</h3>
-            <animated-save-button></animated-save-button>
-            <animated-save-button></animated-save-button>
-            <animated-save-button></animated-save-button>
+            <animated-save-button text="Button 1"></animated-save-button>
+            <animated-save-button text="Button 2"></animated-save-button>
+            <animated-save-button text="Button 3"></animated-save-button>
         </div>
     </div>
 
@@ -55,10 +55,10 @@
         var firstButton = document.querySelector('#first-button');
         firstButton.addEventListener('save-clicked', function() {
             console.log('save-clicked');
-            firstButton.fillBackgroundFromLeftToRight('rgb(0, 150, 255)');
+            firstButton.changeState('Saving...', 'leftToRight', 'rgb(0, 150, 255)');
             const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
             setTimeout(() => {
-                firstButton.fadeBackground('rgb(0, 112, 225)');
+                firstButton.changeState('Save', 'fade', 'rgb(0, 112, 225)');
             }, randomLoadingTime);
         });
     </script>
