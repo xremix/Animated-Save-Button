@@ -2,8 +2,13 @@ import { LitElement, html, css } from 'https://cdn.jsdelivr.net/npm/lit@3.3.1/+e
 
 class AnimatedSaveButton extends LitElement {
   static styles = css`
+    :host {
+      display: inline-block;
+    }
+    
     button {
       position: relative;
+      display: inline-block;
       padding: 8px 16px;
       border: 1px solid rgb(3, 98, 193);
       background-color: rgb(0, 112, 225);
@@ -11,7 +16,9 @@ class AnimatedSaveButton extends LitElement {
       font-size: 14px;
       cursor: pointer;
       border-radius: 4px;
-      overflow: hidden;
+      overflow: visible;
+      min-width: 60px;
+      min-height: 36px;
     }
 
     .fill-overlay {
@@ -24,13 +31,18 @@ class AnimatedSaveButton extends LitElement {
       transition: width 0.5s ease;
       pointer-events: none;
     }
+
+    .button-text {
+      position: relative;
+      display: inline-block;
+    }
   `;
 
   render() {
     return html`
       <button @click=${this.handleClick}>
         <div class="fill-overlay" id="fillOverlay"></div>
-        Save
+        <span class="button-text">Save</span>
       </button>
     `;
   }
