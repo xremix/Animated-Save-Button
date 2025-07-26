@@ -39,7 +39,7 @@
         
         <div class="button-demo">
             <h3>Button with Save Icon:</h3>
-            <animated-save-button id="first-button" style="width: 200px" text="Save" icon="save-outline"></animated-save-button>
+            <animated-save-button id="first-button" style="width: 200px" text="Save" icon="save"></animated-save-button>
         </div>
         
         <div class="button-demo">
@@ -81,9 +81,9 @@
 
         var firstButton = document.querySelector('#first-button');
         firstButton.addEventListener('save-clicked', async function() {
-            firstButton.changeState('Saving...', 'leftToRight', 'rgb(0, 150, 255)');
+            firstButton.changeState('Saving...', 'leftToRight', 'rgb(0, 150, 255)', null, 'reload-outline');
             await save();
-            firstButton.changeState('Saved!', 'fade', 'rgb(0, 112, 225)');
+            firstButton.changeState('Saved!', 'fade', 'rgb(0, 112, 225)', null, 'save');
         });
 
         var noIconButton = document.querySelector('#no-icon-button');
@@ -97,14 +97,14 @@
         downloadButton.addEventListener('save-clicked', async function() {
             downloadButton.changeState('Downloading...', 'leftToRight', 'rgb(0, 150, 255)');
             await save();
-            downloadButton.changeState('Downloaded', 'fade', 'rgba(0, 170, 112)');
+            downloadButton.changeState('Downloaded', 'fade', 'rgba(0, 170, 112)', null, 'checkmark-circle');
             await save(2000);
             downloadButton.changeState('Downloaded', 'fade', 'rgb(0, 112, 225)');
         });
 
         var heartButton = document.querySelector('#heart-button');
         heartButton.addEventListener('save-clicked', async function() {
-            heartButton.changeState('Liked', 'leftToRight', 'rgb(255, 0, 100)');
+            heartButton.changeState('Liked', 'leftToRight', 'rgb(255, 0, 100)', null, 'heart');
         });
     </script>
 </body>

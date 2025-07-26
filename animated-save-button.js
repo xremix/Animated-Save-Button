@@ -84,17 +84,30 @@ class AnimatedSaveButton extends LitElement {
   }
 
   changeState(text, animation, color, duration = null, icon = null){
-    if(text){
+    if(text && text !== this.text){
       this.text = text;
     }
-    if(icon !== null){
-      this.icon = icon;
+    if(icon !== null && icon !== this.icon){
+      this._animateIconChange(icon, duration || 300);
     }
     if(animation === 'leftToRight'){
       this.fillBackgroundFromLeftToRight(color, duration || 500);
     } else if(animation === 'fade'){
       this.fadeBackground(color, duration || 500);
     }
+  }
+
+  async _animateIconChange(newIcon, duration) {
+    const buttonContent = this.shadowRoot.querySelector('.button-content');
+    const iconEl = buttonContent?.querySelector('.icon');
+    iconEl.style.transition = `transform ${duration}ms ease, opacity ${duration}ms ease`;
+    iconEl.style.transform = 'scale(0.8)';
+    iconEl.style.opacity = '0';
+    setTimeout(() => {
+      iconEl.name = newIcon;
+      iconEl.style.transform = 'scale(1)';
+      iconEl.style.opacity = '1';
+    }, duration);
   }
 
   fillBackgroundFromLeftToRight(color = 'rgb(0, 150, 255)', duration = 500) {
