@@ -97,7 +97,7 @@
         downloadButton.addEventListener('save-clicked', async function() {
             downloadButton.changeState('Downloading...', 'leftToRight', 'rgb(0, 150, 255)');
             await save();
-            downloadButton.changeState('Downloaded', 'fade', 'rgba(0, 170, 112)', null, 'checkmark-circle');
+            downloadButton.changeState('Downloaded', 'leftToRight', 'rgba(0, 170, 112)', null, 'checkmark-circle');
             await save(2000);
             downloadButton.changeState('Downloaded', 'fade', 'rgb(0, 112, 225)');
         });
