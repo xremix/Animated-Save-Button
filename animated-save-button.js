@@ -2,12 +2,14 @@ import { LitElement, html, css } from 'https://cdn.jsdelivr.net/npm/lit@3.3.1/+e
 
 class AnimatedSaveButton extends LitElement {
   static properties = {
-    text: { type: String }
+    text: { type: String },
+    showIcon: { type: Boolean }
   };
 
   constructor() {
     super();
     this.text = '';
+    this.showIcon = true;
   }
 
   static styles = css`
@@ -17,7 +19,10 @@ class AnimatedSaveButton extends LitElement {
     
     button {
       position: relative;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       padding: 8px 16px;
       border: 1px solid rgb(3, 98, 193);
       background-color: rgb(0, 112, 225);
@@ -42,19 +47,27 @@ class AnimatedSaveButton extends LitElement {
       pointer-events: none;
     }
 
-    .button-text {
+    .button-content {
       position: relative;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       z-index: 1;
+    }
+
+    .icon {
+      font-size: 16px;
+      line-height: 1;
     }
   `;
 
   render() {
     return html`
       <button @click=${this.handleClick}>
-        <span class="button-text">
-          ${this.text}
-        </span>
+        <div class="button-content">
+          ${this.showIcon ? html`<ion-icon class="icon" name="save-outline"></ion-icon>` : ''}
+          <span>${this.text}</span>
+        </div>
       </button>
     `;
   }

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated Save Button Demo</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,8 +38,13 @@
         <h1>Animated Save Button Demo</h1>
         
         <div class="button-demo">
-            <h3>Plain Button Component:</h3>
+            <h3>Button with Save Icon:</h3>
             <animated-save-button id="first-button" style="width: 200px" text="Save"></animated-save-button>
+        </div>
+        
+        <div class="button-demo">
+            <h3>Button without Icon:</h3>
+            <animated-save-button id="no-icon-button" style="width: 200px" text="Save" showIcon="false"></animated-save-button>
         </div>
         
         <div class="button-demo">
@@ -59,6 +66,16 @@
             const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
             setTimeout(() => {
                 firstButton.changeState('Saved', 'fade', 'rgb(0, 112, 225)');
+            }, randomLoadingTime);
+        });
+
+        var noIconButton = document.querySelector('#no-icon-button');
+        noIconButton.addEventListener('save-clicked', function() {
+            console.log('no-icon save-clicked');
+            noIconButton.changeState('Saving...', 'leftToRight', 'rgb(0, 150, 255)');
+            const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
+            setTimeout(() => {
+                noIconButton.changeState('Saved', 'fade', 'rgb(0, 112, 225)');
             }, randomLoadingTime);
         });
     </script>
