@@ -35,13 +35,13 @@ class AnimatedSaveButton extends LitElement {
     .button-text {
       position: relative;
       display: inline-block;
+      z-index: 1;
     }
   `;
 
   render() {
     return html`
       <button @click=${this.handleClick}>
-        <div class="fill-overlay" id="fillOverlay"></div>
         <span class="button-text">Save</span>
       </button>
     `;
@@ -58,18 +58,44 @@ class AnimatedSaveButton extends LitElement {
 
     const button = this.shadowRoot.querySelector('button');
     
-    const overlay = this.shadowRoot.getElementById('fillOverlay');
-    if (!overlay) return;
-    
+    // Create fill-overlay div
+    const overlay = document.createElement('div');
+    overlay.className = 'fill-overlay';
     overlay.style.backgroundColor = color;
-    overlay.style.transition = `width ${duration}ms ease`;
     overlay.style.width = '0%';
+    overlay.style.opacity = '1';
+    overlay.style.transition = `width ${duration}ms ease`;
+    button.appendChild(overlay);
+    
+    // Force reflow and animate
     overlay.offsetHeight;
     overlay.style.width = '100%';
     
     setTimeout(() => {
       button.style.backgroundColor = color;
-      overlay.style.width = '0%';
+      overlay.remove();
+    }, duration);
+  }
+
+  fadeBackground(color = 'rgb(0, 150, 255)', duration = 500) {
+    const button = this.shadowRoot.querySelector('button');
+    
+    // Create fill-overlay div
+    const overlay = document.createElement('div');
+    overlay.className = 'fill-overlay';
+    overlay.style.backgroundColor = color;
+    overlay.style.width = '100%';
+    overlay.style.opacity = '0';
+    overlay.style.transition = `opacity ${duration}ms ease`;
+    button.appendChild(overlay);
+    
+    // Force reflow and animate
+    overlay.offsetHeight;
+    overlay.style.opacity = '1';
+    
+    setTimeout(() => {
+      button.style.backgroundColor = color;
+      overlay.remove();
     }, duration);
   }
 }

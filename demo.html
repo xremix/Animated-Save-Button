@@ -50,13 +50,17 @@
 
     <script type="module" src="./animated-save-button.js"></script>
     <script>
-        // Different shades of blue and green
-        var colors = ['rgb(0, 150, 255)', 'rgb(14, 163, 1)', 'rgb(0, 112, 225)', 'rgb(0, 130, 225)', 'rgb(0, 140, 225)', 'rgb(0, 150, 225)', 'rgb(0, 160, 225)', 'rgb(0, 170, 225)', 'rgb(0, 180, 225)', 'rgb(0, 190, 225)', 'rgb(0, 200, 225)', 'rgb(0, 210, 225)', 'rgb(0, 220, 225)', 'rgb(0, 230, 225)', 'rgb(0, 240, 225)', 'rgb(0, 250, 225)'];
+        var isSaving = false;
+
         var firstButton = document.querySelector('#first-button');
         firstButton.addEventListener('save-clicked', function() {
             console.log('save-clicked');
-            var randomColor = colors[Math.floor(Math.random() * colors.length)];
-            firstButton.fillBackgroundFromLeftToRight(randomColor);
+            if(isSaving) {
+                firstButton.fadeBackground('rgb(0, 112, 225)');
+            } else {
+                firstButton.fillBackgroundFromLeftToRight('rgb(0, 150, 255)');
+            }
+            isSaving = !isSaving;
         });
     </script>
 </body>
