@@ -39,8 +39,12 @@ class AnimatedSaveButton extends LitElement {
     this.dispatchEvent(new CustomEvent('save-clicked'));
   }
 
+
+
   fillBackgroundFromLeftToRight(color = 'rgb(0, 150, 255)', duration = 500) {
     console.log('fillBackgroundFromLeftToRight');
+
+    const button = this.shadowRoot.querySelector('button');
     
     const overlay = this.shadowRoot.getElementById('fillOverlay');
     if (!overlay) return;
@@ -60,10 +64,11 @@ class AnimatedSaveButton extends LitElement {
     // Animate to 100% width
     overlay.style.width = '100%';
     
-    // Reset after animation completes
-    // setTimeout(() => {
-    //   overlay.style.width = '0%';
-    // }, duration);
+    // after animation completes, set the background color to the new color and reset the width to 0%
+    setTimeout(() => {
+      button.style.backgroundColor = color;
+      overlay.style.width = '0%';
+    }, duration);
   }
 }
 
