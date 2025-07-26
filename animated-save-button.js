@@ -83,14 +83,17 @@ class AnimatedSaveButton extends LitElement {
     this.dispatchEvent(new CustomEvent('save-clicked'));
   }
 
-  changeState(text, animation, color, duration = 500){
+  changeState(text, animation, color, duration = null, icon = null){
     if(text){
       this.text = text;
     }
+    if(icon !== null){
+      this.icon = icon;
+    }
     if(animation === 'leftToRight'){
-      this.fillBackgroundFromLeftToRight(color, duration);
+      this.fillBackgroundFromLeftToRight(color, duration || 500);
     } else if(animation === 'fade'){
-      this.fadeBackground(color, duration);
+      this.fadeBackground(color, duration || 500);
     }
   }
 
