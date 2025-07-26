@@ -40,7 +40,7 @@ class AnimatedSaveButton extends LitElement {
     }
 
     button:active {
-      transform: scale(0.99);
+      transform: scale(0.98);
     }
 
     .fill-overlay {
