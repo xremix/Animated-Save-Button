@@ -61,22 +61,12 @@ class AnimatedSaveButton extends LitElement {
     const overlay = this.shadowRoot.getElementById('fillOverlay');
     if (!overlay) return;
     
-    // Set the color
     overlay.style.backgroundColor = color;
-    
-    // Set the transition duration
     overlay.style.transition = `width ${duration}ms ease`;
-    
-    // Reset to 0% width
     overlay.style.width = '0%';
-    
-    // Force a reflow to ensure the reset is applied
     overlay.offsetHeight;
-    
-    // Animate to 100% width
     overlay.style.width = '100%';
     
-    // after animation completes, set the background color to the new color and reset the width to 0%
     setTimeout(() => {
       button.style.backgroundColor = color;
       overlay.style.width = '0%';
