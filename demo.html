@@ -43,6 +43,16 @@
         </div>
         
         <div class="button-demo">
+            <h3>Button with Download Icon:</h3>
+            <animated-save-button id="download-button" style="width: 200px" text="Download" icon="download-outline"></animated-save-button>
+        </div>
+        
+        <div class="button-demo">
+            <h3>Button with Heart Icon:</h3>
+            <animated-save-button id="heart-button" style="width: 200px" text="Like" icon="heart-outline"></animated-save-button>
+        </div>
+        
+        <div class="button-demo">
             <h3>Button without Icon:</h3>
             <animated-save-button id="no-icon-button" style="width: 200px" text="Save" showIcon="false"></animated-save-button>
         </div>
@@ -76,6 +86,26 @@
             const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
             setTimeout(() => {
                 noIconButton.changeState('Saved', 'fade', 'rgb(0, 112, 225)');
+            }, randomLoadingTime);
+        });
+
+        var downloadButton = document.querySelector('#download-button');
+        downloadButton.addEventListener('save-clicked', function() {
+            console.log('download clicked');
+            downloadButton.changeState('Downloading...', 'leftToRight', 'rgb(0, 150, 255)');
+            const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
+            setTimeout(() => {
+                downloadButton.changeState('Downloaded', 'fade', 'rgb(0, 112, 225)');
+            }, randomLoadingTime);
+        });
+
+        var heartButton = document.querySelector('#heart-button');
+        heartButton.addEventListener('save-clicked', function() {
+            console.log('heart clicked');
+            heartButton.changeState('Liking...', 'leftToRight', 'rgb(255, 0, 100)');
+            const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
+            setTimeout(() => {
+                heartButton.changeState('Liked', 'fade', 'rgb(255, 0, 100)');
             }, randomLoadingTime);
         });
     </script>

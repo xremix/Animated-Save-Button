@@ -3,13 +3,15 @@ import { LitElement, html, css } from 'https://cdn.jsdelivr.net/npm/lit@3.3.1/+e
 class AnimatedSaveButton extends LitElement {
   static properties = {
     text: { type: String },
-    showIcon: { type: Boolean }
+    showIcon: { type: Boolean },
+    icon: { type: String }
   };
 
   constructor() {
     super();
     this.text = '';
     this.showIcon = true;
+    this.icon = 'save-outline';
   }
 
   static styles = css`
@@ -65,7 +67,7 @@ class AnimatedSaveButton extends LitElement {
     return html`
       <button @click=${this.handleClick}>
         <div class="button-content">
-          ${this.showIcon ? html`<ion-icon class="icon" name="save-outline"></ion-icon>` : ''}
+          ${this.showIcon ? html`<ion-icon class="icon" name="${this.icon}"></ion-icon>` : ''}
           <span>${this.text}</span>
         </div>
       </button>
