@@ -4,13 +4,15 @@ class AnimatedSaveButton extends LitElement {
   static properties = {
     text: { type: String },
     showIcon: { type: Boolean },
-    icon: { type: String }
+    icon: { type: String },
+    backgroundColor: { type: String }
   };
 
   constructor() {
     super();
     this.text = '';
     this.icon = '';
+    this.backgroundColor = 'rgb(0, 112, 225)';
   }
 
   static styles = css`
@@ -25,8 +27,9 @@ class AnimatedSaveButton extends LitElement {
       justify-content: center;
       gap: 8px;
       padding: 8px 16px;
-      border: 1px solid rgb(3, 98, 193);
-      background-color: rgb(0, 112, 225);
+      border: 1px solid;
+      background-color: var(--button-bg-color, rgb(0, 112, 225));
+      border-color: var(--button-border-color, rgb(0, 100, 202));
       color: rgb(255, 255, 255);
       font-size: 14px;
       cursor: pointer;
@@ -67,6 +70,33 @@ class AnimatedSaveButton extends LitElement {
       line-height: 1;
     }
   `;
+
+  updated(changedProperties) {
+    if (changedProperties.has('backgroundColor')) {
+      this._updateButtonColors();
+    }
+  }
+
+  _updateButtonColors() {
+    const button = this.shadowRoot.querySelector('button');
+    if (button) {
+      const borderColor = this._darkenColor(this.backgroundColor, 10);
+      button.style.setProperty('--button-bg-color', this.backgroundColor);
+      button.style.setProperty('--button-border-color', borderColor);
+    }
+  }
+
+  _darkenColor(color, percent) {
+    // Parse RGB values
+    const rgb = color.match(/\d+/g);
+    if (!rgb || rgb.length !== 3) return color;
+    
+    const r = Math.max(0, parseInt(rgb[0]) - Math.round(parseInt(rgb[0]) * percent / 100));
+    const g = Math.max(0, parseInt(rgb[1]) - Math.round(parseInt(rgb[1]) * percent / 100));
+    const b = Math.max(0, parseInt(rgb[2]) - Math.round(parseInt(rgb[2]) * percent / 100));
+    
+    return `rgb(${r}, ${g}, ${b})`;
+  }
 
   render() {
     return html`
@@ -110,13 +140,14 @@ class AnimatedSaveButton extends LitElement {
     }, duration);
   }
 
-  fillBackgroundFromLeftToRight(color = 'rgb(0, 150, 255)', duration = 500) {
+  fillBackgroundFromLeftToRight(color = null, duration = 500) {
     const button = this.shadowRoot.querySelector('button');
+    const targetColor = color || this.backgroundColor;
     
     // Create fill-overlay div
     const overlay = document.createElement('div');
     overlay.className = 'fill-overlay';
-    overlay.style.backgroundColor = color;
+    overlay.style.backgroundColor = targetColor;
     overlay.style.width = '0%';
     overlay.style.opacity = '1';
     overlay.style.transition = `width ${duration}ms ease`;
@@ -127,18 +158,20 @@ class AnimatedSaveButton extends LitElement {
     overlay.style.width = '100%';
     
     setTimeout(() => {
-      button.style.backgroundColor = color;
+      this.backgroundColor = targetColor;
+      this._updateButtonColors();
       overlay.remove();
     }, duration);
   }
 
-  fadeBackground(color = 'rgb(0, 150, 255)', duration = 500) {
+  fadeBackground(color = null, duration = 500) {
     const button = this.shadowRoot.querySelector('button');
+    const targetColor = color || this.backgroundColor;
     
     // Create fill-overlay div
     const overlay = document.createElement('div');
     overlay.className = 'fill-overlay';
-    overlay.style.backgroundColor = color;
+    overlay.style.backgroundColor = targetColor;
     overlay.style.width = '100%';
     overlay.style.opacity = '0';
     overlay.style.transition = `opacity ${duration}ms ease`;
@@ -149,7 +182,8 @@ class AnimatedSaveButton extends LitElement {
     overlay.style.opacity = '1';
     
     setTimeout(() => {
-      button.style.backgroundColor = color;
+      this.backgroundColor = targetColor;
+      this._updateButtonColors();
       overlay.remove();
     }, duration);
   }
