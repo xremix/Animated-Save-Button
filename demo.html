@@ -50,8 +50,12 @@
 
     <script type="module" src="./animated-save-button.js"></script>
     <script>
-        document.querySelector('#first-button').addEventListener('save-clicked', function() {
-            alert('Save button clicked!');
+        var colors = ['rgb(0, 150, 255)', 'rgb(14, 163, 1)', 'rgb(255, 255, 255)'];
+        var firstButton = document.querySelector('#first-button');
+        firstButton.addEventListener('save-clicked', function() {
+            console.log('save-clicked');
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+            firstButton.fillBackgroundFromLeftToRight(randomColor);
         });
     </script>
 </body>
