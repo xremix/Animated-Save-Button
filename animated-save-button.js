@@ -19,6 +19,7 @@ class AnimatedSaveButton extends LitElement {
       overflow: visible;
       min-width: 60px;
       min-height: 36px;
+      width: 100%;
     }
 
     .fill-overlay {
@@ -42,7 +43,9 @@ class AnimatedSaveButton extends LitElement {
   render() {
     return html`
       <button @click=${this.handleClick}>
-        <span class="button-text">Save</span>
+        <span class="button-text">
+          Save
+        </span>
       </button>
     `;
   }

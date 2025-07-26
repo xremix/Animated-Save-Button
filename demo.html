@@ -37,7 +37,7 @@
         
         <div class="button-demo">
             <h3>Plain Button Component:</h3>
-            <animated-save-button id="first-button"></animated-save-button>
+            <animated-save-button id="first-button" style="width: 200px"></animated-save-button>
         </div>
         
         <div class="button-demo">
@@ -55,12 +55,11 @@
         var firstButton = document.querySelector('#first-button');
         firstButton.addEventListener('save-clicked', function() {
             console.log('save-clicked');
-            if(isSaving) {
+            firstButton.fillBackgroundFromLeftToRight('rgb(0, 150, 255)');
+            const randomLoadingTime = Math.floor(Math.random() * 3000) + 100;
+            setTimeout(() => {
                 firstButton.fadeBackground('rgb(0, 112, 225)');
-            } else {
-                firstButton.fillBackgroundFromLeftToRight('rgb(0, 150, 255)');
-            }
-            isSaving = !isSaving;
+            }, randomLoadingTime);
         });
     </script>
 </body>
