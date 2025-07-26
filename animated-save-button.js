@@ -15,8 +15,12 @@ class AnimatedSaveButton extends LitElement {
 
   render() {
     return html`
-      <button>Save</button>
+      <button @click=${this.handleClick}>Save</button>
     `;
+  }
+
+  handleClick() {
+    this.dispatchEvent(new CustomEvent('save-clicked'));
   }
 }
 
