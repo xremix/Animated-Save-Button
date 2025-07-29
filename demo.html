@@ -62,6 +62,22 @@
             <animated-save-button text="Button 1"></animated-save-button>
             <animated-save-button text="Button 2"></animated-save-button>
             <animated-save-button text="Button 3"></animated-save-button>
+        </div>       
+        <div class="button-demo">
+            <h3>Contact Form Example:</h3>
+            <form id="contact-form" style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="first-name" placeholder="First Name" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                    <input type="text" id="last-name" placeholder="Last Name" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <input type="email" id="email" placeholder="Email Address" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <input type="tel" id="phone" placeholder="Phone Number" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <textarea id="message" placeholder="Your Message" rows="4" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <animated-save-button id="submit-form" text="Submit Form" icon="send" style="flex: 1;"></animated-save-button>
+                    <animated-save-button id="save-draft" text="Save Draft" icon="save-outline" style="flex: 1;"></animated-save-button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -105,6 +121,43 @@
         var heartButton = document.querySelector('#heart-button');
         heartButton.addEventListener('save-clicked', async function() {
             heartButton.changeState('Liked', 'leftToRight', 'rgb(255, 0, 100)', null, 'heart');
+        });
+
+
+        // Form submission handler
+        var submitFormButton = document.querySelector('#submit-form');
+        submitFormButton.addEventListener('save-clicked', async function() {
+            // Get form data
+            const firstName = document.querySelector('#first-name').value;
+            const lastName = document.querySelector('#last-name').value;
+            const email = document.querySelector('#email').value;
+            const phone = document.querySelector('#phone').value;
+            const message = document.querySelector('#message').value;
+            
+            // Basic validation
+            if (!firstName || !lastName || !email || !message) {
+                submitFormButton.changeState('Please fill all required fields', 'fade', 'rgb(255, 100, 100)', null, 'alert-circle');
+                await save(2000);
+                submitFormButton.changeState('Submit Form', 'fade', null, null, 'send');
+                return;
+            }
+            
+            // Simulate form submission
+            submitFormButton.changeState('Submitting...', 'leftToRight', 'rgb(0, 150, 255)', null, 'send');
+            await save();
+            submitFormButton.changeState('Submitted!', 'fade', 'rgb(0, 170, 112)', null, 'checkmark-circle');
+            await save(2000);
+            submitFormButton.changeState('Submit Form', 'fade', null, null, 'send');
+        });
+
+        // Save draft handler
+        var saveDraftButton = document.querySelector('#save-draft');
+        saveDraftButton.addEventListener('save-clicked', async function() {
+            saveDraftButton.changeState('Saving Draft...', 'leftToRight', 'rgb(150, 150, 150)', null, 'save-outline');
+            await save();
+            saveDraftButton.changeState('Draft Saved!', 'fade', 'rgb(0, 170, 112)', null, 'checkmark-circle');
+            await save(1500);
+            saveDraftButton.changeState('Save Draft', 'fade', null, null, 'save-outline');
         });
     </script>
 </body>
