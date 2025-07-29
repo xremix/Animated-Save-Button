@@ -69,6 +69,19 @@ class AnimatedSaveButton extends LitElement {
       font-size: 16px;
       line-height: 1;
     }
+
+    .icon[name="reload-outline"] {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
   `;
 
   updated(changedProperties) {
@@ -114,16 +127,18 @@ class AnimatedSaveButton extends LitElement {
   }
 
   changeState(text, animation, color, duration = null, icon = null){
+    
     if(text && text !== this.text){
       this.text = text;
     }
-    if(icon !== null && icon !== this.icon){
+    console.log('changeState', icon, this.icon, !!icon, icon !== this.icon);
+    if(!!icon && icon !== this.icon){
       this._animateIconChange(icon, duration || 300);
     }
     if(animation === 'leftToRight'){
       this.fillBackgroundFromLeftToRight(color, duration || 500);
     } else if(animation === 'fade'){
-      this.fadeBackground(color, duration || 500);
+      this.fadeBackground(color, duration || 300);
     }
   }
 
@@ -133,8 +148,10 @@ class AnimatedSaveButton extends LitElement {
     iconEl.style.transition = `transform ${duration}ms ease, opacity ${duration}ms ease`;
     iconEl.style.transform = 'scale(0.8)';
     iconEl.style.opacity = '0';
+    const self = this;
     setTimeout(() => {
       iconEl.name = newIcon;
+      this.icon = newIcon;
       iconEl.style.transform = 'scale(1)';
       iconEl.style.opacity = '1';
     }, duration);
