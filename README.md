@@ -44,6 +44,8 @@ Include the JavaScript file and use the custom element:
 
 Open `demo.html` in your browser to see the component in action.
 
+**[🚀 Live Demo](https://raw.githack.com/xremix/Animated-Save-Button/main/demo.html)** - View the demo directly in your browser
+
 ## Project Structure
 
 ```
